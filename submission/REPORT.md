@@ -20,8 +20,8 @@
 
 ## 3. Logging và tracing
 
-- Evidence correlation ID:
-- Evidence PII redaction:
+- Evidence correlation ID: `submission/correlation-id-evidence.png`
+- Evidence PII redaction: `submission/evidence/pii-redaction-evidence.png`
 - Evidence trace waterfall: `submission/evidence/trace-baseline.png`, `submission/evidence/trace-candidate.png`
 - Giải thích một span đáng chú ý: generation span `run` liên kết trực tiếp với managed prompt `day13-chat`, đồng thời ghi `prompt_name`, `prompt_label`, `prompt_version`, `prompt_source`, token usage và cost. Hai request dùng cùng input nhưng trace metadata lần lượt chứng minh Version 1 (`baseline`) và Version 2 (`candidate`).
 
