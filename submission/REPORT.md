@@ -2,8 +2,8 @@
 
 ## 1. Thông tin nhóm
 
-- Tên nhóm:
-- Repository URL:
+- Tên nhóm: Nemo
+- Repository URL:https://github.com/huan2301/K4-DAY13-2A202601164
 - Commit SHA cuối:
 - Thành viên và vai trò:
 
