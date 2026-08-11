@@ -5,14 +5,16 @@
 - Tên nhóm: Nemo
 - Repository URL: https://github.com/huan2301/K4-DAY13-2A202601164
 - Commit SHA cuối: cập nhật theo `HEAD` của nhánh `main` khi nộp bài
-- Thành viên và vai trò: Lê Đình Việt - Tracing & Prompt Version
+- Thành viên và vai trò:
+  - Lê Đình Việt — Tracing & Prompt Version
+  - Vương Đức Thoại — Dashboard, SLO & Alert
 
 ## 2. Kết quả kỹ thuật
 
 - Điểm `validate_logs.py`:
 - Tổng số traces: Đã sinh 10 request thành công bằng `scripts/load_test.py`, ngoài hai request đối chiếu baseline/candidate; Langfuse hiển thị 73 span trong khoảng chụp evidence.
 - Số PII leak còn lại:
-- Link/đường dẫn dashboard:
+- Link/đường dẫn dashboard: `dashboard/app.py`
 
 ## 3. Logging và tracing
 
@@ -83,3 +85,4 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
 | Lê Đình Việt | Tích hợp trace metadata, kiểm chứng managed prompt Version 1/2, chuyển label production, rollback và thu thập evidence | `ffd8916`, `54c8c70` | Phân biệt trace/span, liên kết prompt version với generation, dùng label để triển khai và rollback prompt mà không sửa code ứng dụng |
+| Vương Đức Thoại | Xây dựng dashboard runtime đọc `data/logs.jsonl` với 6 panel latency, traffic, error, cost, token và quality; cấu hình SLO 28 ngày; xây dựng ba alert theo triệu chứng và runbook; kiểm tra dashboard contract, chạy baseline/incident `rag_slow` và thu thập evidence | `d7149e6`, `70c2e88` | Hiểu cách dùng P50/P95/P99 để quan sát tail latency; chuyển SLI thành SLO và threshold có thể đo; thiết kế alert có condition, duration, severity, owner và mitigation; điều tra sự cố theo luồng Metrics → Traces → Logs và so sánh dashboard baseline với `rag_slow` |
