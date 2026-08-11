@@ -28,6 +28,8 @@ class LabAgent:
 
     @observe(as_type="generation", capture_input=False, capture_output=False)
     def run(self, user_id: str, feature: str, session_id: str, message: str) -> AgentResult:
+        from structlog.contextvars import get_contextvars
+
         started = time.perf_counter()
         docs = retrieve(message)
         langfuse_client = get_langfuse_client()
