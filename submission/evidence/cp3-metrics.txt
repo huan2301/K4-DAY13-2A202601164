@@ -1,0 +1,24 @@
+CP3 official challenge evidence
+Date: 2026-08-11
+Challenge: day13-k4-observability-v1
+Cohort: K4
+Incident: rag_slow
+
+Health before test:
+{"ok":true,"tracing_enabled":true,"incidents":{"rag_slow":false,"tool_fail":false,"cost_spike":false}}
+
+Metrics after official challenge load:
+traffic=15
+latency_p50=151 ms
+latency_p95=2651 ms
+latency_p99=2651 ms
+error_rate_pct=0.0
+total_cost_usd=0.0317
+tokens_in_total=505
+tokens_out_total=2010
+quality_avg=0.8667
+
+Interpretation:
+- The challenge threshold is 2000 ms; P95/P99 reached 2651 ms.
+- Error rate stayed at 0%, so the primary symptom is tail latency, not request failure.
+- The incident was disabled after the challenge run.

@@ -1,0 +1,10 @@
+Role 4 QA results
+
+python -m pytest -q (using .venv): 22 passed, 2 warnings
+python scripts/validate_logs.py: Estimated Score 100/100
+python scripts/validate_dashboard.py: HOP LE 6/6 panel
+Official challenge: day13-k4-observability-v1 executed successfully
+Incident recovery: rag_slow disabled successfully
+
+Note: system Python was missing structlog and langfuse; all tests pass with
+the repository .venv interpreter.

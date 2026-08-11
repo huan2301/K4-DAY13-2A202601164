@@ -1,0 +1,16 @@
+CP3 correlation evidence from data/logs.jsonl
+Challenge sessions: k4-challenge-s01 through k4-challenge-s05
+
+correlation_id=req-0fe877de | session=k4-challenge-s02 | event=response_sent | latency_ms=2651
+correlation_id=req-abc39265 | session=k4-challenge-s05 | event=response_sent | latency_ms=2650
+correlation_id=req-dfeaab0a | session=k4-challenge-s04 | event=response_sent | latency_ms=2651
+correlation_id=req-3fe3ecc8 | session=k4-challenge-s01 | event=response_sent | latency_ms=2650
+correlation_id=req-02f99ff2 | session=k4-challenge-s03 | event=response_sent | latency_ms=2651
+
+The matching request_received and response_sent events contain the same
+correlation_id. The API logs also contain hashed user IDs and do not contain
+raw PII according to validate_logs.py.
+
+Control events:
+incident_enabled: correlation_id=req-5b48bd69
+incident_disabled: correlation_id=req-17dc2e3f

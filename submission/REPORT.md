@@ -9,10 +9,10 @@
 
 ## 2. Kết quả kỹ thuật
 
-- Điểm `validate_logs.py`: Baseline CP0 = 30/100
-- Tổng số traces: Chưa tổng hợp
+- Điểm `validate_logs.py`: 100/100 sau QA; baseline CP0 trước đó = 30/100
+- Tổng số traces: Tối thiểu 10 theo evidence `traces-list.png`; challenge trace ID cần bổ sung từ Langfuse UI
 - Số PII leak còn lại: 0
-- Link/đường dẫn dashboard: Chưa hoàn thiện
+- Link/đường dẫn dashboard: Evidence runtime `submission/evidence/dashboard-rag-slow.png`
 
 ## 3. Logging và tracing
 
@@ -67,13 +67,21 @@ theo luồng Metrics → Traces → Logs.
 
 ## 6. Điều tra challenge
 
-- Challenge ID:
-- Triệu chứng từ metrics:
-- Trace ID liên quan:
-- Log line/correlation ID liên quan:
-- Root cause:
-- Fix action:
-- Preventive measure:
+- Challenge ID: `day13-k4-observability-v1` (cohort K4)
+- Incident: `rag_slow`, affected feature `monitoring`
+- Triệu chứng từ metrics: `latency_p95=2651ms`, `latency_p99=2651ms`, vượt threshold challenge `2000ms`; error rate `0%`; quality average `0.8667`. Chi tiết: `submission/evidence/cp3-metrics.txt`
+- Trace ID liên quan: cần mở Langfuse và ghi trace ID của một session `k4-challenge-s01` đến `k4-challenge-s05`; hiện chưa có trong log export local
+- Log line/correlation ID liên quan: `req-0fe877de`, `req-abc39265`, `req-dfeaab0a`, `req-3fe3ecc8`, `req-02f99ff2`; chi tiết: `submission/evidence/cp3-log.txt`
+- Root cause: incident `rag_slow` thêm khoảng 2,5 giây vào retrieval/RAG, làm tăng tail latency nhưng không gây request failure
+- Fix action: chạy `python scripts/inject_incident.py --disable`, API xác nhận `rag_slow=false`
+- Preventive measure: alert P95, đo riêng retrieval span, timeout retrieval và fallback khi retrieval chậm
+
+## 6.1 QA/CP3 evidence
+
+- Kết quả test: `submission/evidence/qa-results.txt`
+- Phân tích root cause: `submission/evidence/cp3-root-cause.md`
+- Kết quả metrics: `submission/evidence/cp3-metrics.txt`
+- Correlation log: `submission/evidence/cp3-log.txt`
 
 ## 7. Đóng góp cá nhân
 
@@ -82,3 +90,4 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
 | Lê Đình Việt | Tích hợp trace metadata, kiểm chứng managed prompt Version 1/2, chuyển label production, rollback và thu thập evidence | `ffd8916`, `54c8c70` | Phân biệt trace/span, liên kết prompt version với generation, dùng label để triển khai và rollback prompt mà không sửa code ứng dụng |
+| Role 4 / QA-CP3 | Chạy QA toàn hệ thống, chạy challenge chính thức `rag_slow`, đối chiếu metrics → traces → logs, xác định root cause, kiểm tra recovery và hoàn thiện evidence/report | Working tree QA evidence | Xác định slow retrieval qua P95/P99 và correlation ID; phân biệt lỗi latency với lỗi request |
