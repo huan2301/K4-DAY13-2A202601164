@@ -4,7 +4,7 @@
 
 - Tên nhóm: Nemo
 - Repository URL:https://github.com/huan2301/K4-DAY13-2A202601164
-- Commit SHA cuối: ``
+- Commit SHA cuối: `5939226b035bf98e8840d433b0cdcff47393c772`
 - Thành viên và vai trò:
 - Quách Thanh Hưng: Role 1 – Logging & PII
 - Lê Đình Việt: Role 2 – Tracing & Prompt Version
