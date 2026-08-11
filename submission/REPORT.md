@@ -3,7 +3,7 @@
 ## 1. Thông tin nhóm
 
 - Tên nhóm: Nemo
-- Repository URL: https://github.com/huan2301/Day13-K4-Nemo-Observability
+- Repository URL: https://github.com/huan2301/K4-DAY13-2A202601164
 - Commit SHA cuối: cập nhật theo `HEAD` của nhánh `main` khi nộp bài
 - Thành viên và vai trò: Lê Đình Việt - Tracing & Prompt Version
 
