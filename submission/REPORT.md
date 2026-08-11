@@ -2,15 +2,15 @@
 
 ## 1. Thông tin nhóm
 
-- Tên nhóm:
-- Repository URL:
-- Commit SHA cuối:
-- Thành viên và vai trò:
+- Tên nhóm: Nemo
+- Repository URL: https://github.com/huan2301/Day13-K4-Nemo-Observability
+- Commit SHA cuối: cập nhật theo `HEAD` của nhánh `main` khi nộp bài
+- Thành viên và vai trò: Lê Đình Việt - Tracing & Prompt Version
 
 ## 2. Kết quả kỹ thuật
 
 - Điểm `validate_logs.py`:
-- Tổng số traces:
+- Tổng số traces: Đã sinh 10 request thành công bằng `scripts/load_test.py`, ngoài hai request đối chiếu baseline/candidate; Langfuse hiển thị 73 span trong khoảng chụp evidence.
 - Số PII leak còn lại:
 - Link/đường dẫn dashboard:
 
@@ -18,16 +18,21 @@
 
 - Evidence correlation ID:
 - Evidence PII redaction:
-- Evidence trace waterfall:
-- Giải thích một span đáng chú ý:
+- Evidence trace waterfall: `submission/evidence/trace-baseline.png`, `submission/evidence/trace-candidate.png`
+- Giải thích một span đáng chú ý: generation span `run` liên kết trực tiếp với managed prompt `day13-chat`, đồng thời ghi `prompt_name`, `prompt_label`, `prompt_version`, `prompt_source`, token usage và cost. Hai request dùng cùng input nhưng trace metadata lần lượt chứng minh Version 1 (`baseline`) và Version 2 (`candidate`).
 
 ## 4. Prompt versioning
 
-- Prompt name:
-- Version/label baseline:
-- Version/label candidate:
+- Prompt name: `day13-chat`
+- Version/label baseline: Version 1 — `baseline`; sau rollback có thêm `production`
+- Version/label candidate: Version 2 — `candidate`; đã được chuyển sang `production` trước khi rollback
 - Trace ID của mỗi version:
+  - Baseline / Version 1: `2c764e4f99f6eb27abc453ad4d619d91`
+  - Candidate / Version 2: `2b3876aa62212f646232790c81f7c429`
 - Bằng chứng đổi label hoặc rollback:
+  - `submission/evidence/production-v2.png`: label `production` được chuyển sang Version 2.
+  - `submission/evidence/rollback-production-v1.png`: rollback `production` về Version 1.
+  - `submission/evidence/traces-list.png`: danh sách dữ liệu tracing sau load test.
 
 ## 5. Dashboard, SLO và alerts
 
@@ -76,4 +81,4 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
-| | | | |
+| Lê Đình Việt | Tích hợp trace metadata, kiểm chứng managed prompt Version 1/2, chuyển label production, rollback và thu thập evidence | `ffd8916`, `54c8c70` | Phân biệt trace/span, liên kết prompt version với generation, dùng label để triển khai và rollback prompt mà không sửa code ứng dụng |
