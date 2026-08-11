@@ -1,16 +1,35 @@
 service: day13-observability-lab
 window: 28d
+
 slis:
   latency_p95_ms:
+    description: 99.5% cửa sổ đo phải có P95 latency không vượt quá 3000 ms
+    indicator: percentile(response_sent.latency_ms, 95)
     objective: 3000
+    operator: lte
+    unit: ms
     target: 99.5
-    note: Replace with your group's target
+
   error_rate_pct:
+    description: 99% cửa sổ đo phải có error rate không vượt quá 2%
+    indicator: request_failed / request_received * 100
     objective: 2
+    operator: lte
+    unit: percent
     target: 99.0
+
   daily_cost_usd:
+    description: Tổng chi phí AI trong một ngày không vượt quá 2.5 USD
+    indicator: sum(response_sent.cost_usd) by 1d
     objective: 2.5
+    operator: lte
+    unit: usd
     target: 100.0
+
   quality_score_avg:
+    description: 95% cửa sổ đo phải có quality score trung bình ít nhất 0.75
+    indicator: mean(response_sent.quality_score)
     objective: 0.75
+    operator: gte
+    unit: score_0_to_1
     target: 95.0

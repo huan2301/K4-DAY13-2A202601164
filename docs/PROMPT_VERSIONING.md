@@ -1,5 +1,7 @@
 # Prompt versioning cơ bản
 
+Quy trình PowerShell từng bước dành cho người phụ trách phần này nằm tại [TRACING_PROMPT_STEPS.md](TRACING_PROMPT_STEPS.md).
+
 Mục tiêu của phần này là biết một request đã dùng prompt nào và có thể rollback an toàn. Đây không phải bài tối ưu prompt hoặc A/B testing.
 
 ## Prompt contract
