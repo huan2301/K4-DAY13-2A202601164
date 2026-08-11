@@ -6,13 +6,17 @@
 - Repository URL:https://github.com/huan2301/K4-DAY13-2A202601164
 - Commit SHA cuối:
 - Thành viên và vai trò:
+- Quách Thanh Hưng: Role 1 – Logging & PII
+- Lê Đình Việt: Role 2 – Tracing & Prompt Version
+- Vương Đức Thoại: Role 3 – Dashboard, SLO & Alert
+- Nguyễn Ngọc Huân: Role 4 – QA/CP3, Incident, Report & Demo
 
 ## 2. Kết quả kỹ thuật
 
 - Điểm `validate_logs.py`: 100/100 sau QA; baseline CP0 trước đó = 30/100
 - Tổng số traces: Tối thiểu 10 theo evidence `traces-list.png`; challenge trace ID cần bổ sung từ Langfuse UI
 - Số PII leak còn lại: 0
-- Link/đường dẫn dashboard: Evidence runtime `submission/evidence/dashboard-rag-slow.png`
+- Link/đường dẫn dashboard: Evidence runtime `submission/evidence/dashboard-rag-slow.png`, `dashboard/app.py`
 
 ## 3. Logging và tracing
 
@@ -90,4 +94,6 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Thành viên | Phần việc | Commit/PR | Điều đã học |
 |---|---|---|---|
 | Lê Đình Việt | Tích hợp trace metadata, kiểm chứng managed prompt Version 1/2, chuyển label production, rollback và thu thập evidence | `ffd8916`, `54c8c70` | Phân biệt trace/span, liên kết prompt version với generation, dùng label để triển khai và rollback prompt mà không sửa code ứng dụng |
-| Role 4 / QA-CP3 | Chạy QA toàn hệ thống, chạy challenge chính thức `rag_slow`, đối chiếu metrics → traces → logs, xác định root cause, kiểm tra recovery và hoàn thiện evidence/report | Working tree QA evidence | Xác định slow retrieval qua P95/P99 và correlation ID; phân biệt lỗi latency với lỗi request |
+| Nguyễn Ngọc Huân | Chạy QA toàn hệ thống, chạy challenge chính thức `rag_slow`, đối chiếu metrics → traces → logs, xác định root cause, kiểm tra recovery và hoàn thiện evidence/report | `https://github.com/huan2301/K4-DAY13-2A202601164/commit/323a9e12934f0b5e44ef0b11d380162af8b2dd46`, Working tree QA evidence | Xác định slow retrieval qua P95/P99 và correlation ID; phân biệt lỗi latency với lỗi request |
+| Quách Thanh Hưng | Cài đặt Correlation ID Middleware, enrich log context, cấu hình regex patterns che PII và nâng cấp che PII toàn cục | `7382b69` | Phải xử lý middleware để tránh data leakage, che PII phải che toàn bộ các dữ liệu mà có khả năng định danh cá nhân |
+| Vương Đức Thoại | Xây dựng dashboard runtime đọc `data/logs.jsonl` với 6 panel latency, traffic, error, cost, token và quality; cấu hình SLO 28 ngày; xây dựng ba alert theo triệu chứng và runbook; kiểm tra dashboard contract, chạy baseline/incident `rag_slow` và thu thập evidence | `d7149e6`, `70c2e88` | Hiểu cách dùng P50/P95/P99 để quan sát tail latency; chuyển SLI thành SLO và threshold có thể đo; thiết kế alert có condition, duration, severity, owner và mitigation; điều tra sự cố theo luồng Metrics → Traces → Logs và so sánh dashboard baseline với `rag_slow` |
