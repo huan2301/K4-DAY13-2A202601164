@@ -37,7 +37,8 @@
 ## 5. Dashboard, SLO và alerts
 
 - Kết quả `validate_dashboard.py`: HỢP LỆ 6/6 panel.
-- Evidence dashboard: `submission/evidence/dashboard-baseline.png`
+- Evidence validator: `submission/evidence/dashboard-validator.png`
+- Evidence baseline: `submission/evidence/dashboard-baseline.png`
 - Evidence incident: `submission/evidence/dashboard-rag-slow.png`
 
 ### SLO đã chọn
