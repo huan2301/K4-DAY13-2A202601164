@@ -29,15 +29,18 @@ def send_request(client: httpx.Client, payload: dict) -> None:
 
 
 def main() -> None:
+    global BASE_URL
     configure_utf8_stdio()
     parser = argparse.ArgumentParser()
     parser.add_argument("--concurrency", type=int, default=1, help="Number of concurrent requests")
+    parser.add_argument("--base-url", default=BASE_URL, help="API base URL")
     parser.add_argument(
         "--challenge",
         action="store_true",
         help="Dùng input chính thức trong config/challenge.json sau khi được release.",
     )
     args = parser.parse_args()
+    BASE_URL = args.base_url.rstrip("/")
 
     if args.challenge:
         challenge = load_challenge()

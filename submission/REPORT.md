@@ -4,7 +4,7 @@
 
 - Tên nhóm: Nemo
 - Repository URL:https://github.com/huan2301/K4-DAY13-2A202601164
-- Commit SHA cuối:4c1c348cfdbcbdcd306d29dd9bb48e178065121d
+- Commit SHA cuối: ``
 - Thành viên và vai trò:
 - Quách Thanh Hưng: Role 1 – Logging & PII
 - Lê Đình Việt: Role 2 – Tracing & Prompt Version
@@ -98,3 +98,17 @@ Với mỗi thành viên, ghi rõ nhiệm vụ và link commit/PR tương ứng.
 | Nguyễn Ngọc Huân | Chạy QA toàn hệ thống, chạy challenge chính thức `rag_slow`, đối chiếu metrics → traces → logs, xác định root cause, kiểm tra recovery và hoàn thiện evidence/report | `https://github.com/huan2301/K4-DAY13-2A202601164/commit/323a9e12934f0b5e44ef0b11d380162af8b2dd46`, Working tree QA evidence | Xác định slow retrieval qua P95/P99 và correlation ID; phân biệt lỗi latency với lỗi request |
 | Quách Thanh Hưng | Cài đặt Correlation ID Middleware, enrich log context, cấu hình regex patterns che PII và nâng cấp che PII toàn cục | `7382b69` | Phải xử lý middleware để tránh data leakage, che PII phải che toàn bộ các dữ liệu mà có khả năng định danh cá nhân |
 | Vương Đức Thoại | Xây dựng dashboard runtime đọc `data/logs.jsonl` với 6 panel latency, traffic, error, cost, token và quality; cấu hình SLO 28 ngày; xây dựng ba alert theo triệu chứng và runbook; kiểm tra dashboard contract, chạy baseline/incident `rag_slow` và thu thập evidence | `d7149e6`, `70c2e88` | Hiểu cách dùng P50/P95/P99 để quan sát tail latency; chuyển SLI thành SLO và threshold có thể đo; thiết kế alert có condition, duration, severity, owner và mitigation; điều tra sự cố theo luồng Metrics → Traces → Logs và so sánh dashboard baseline với `rag_slow` |
+## 8. Bonus - Cost Optimization, Audit Log and Custom Automation
+
+- Cost optimization: added an output-token cap controlled by `COST_OPTIMIZATION_ENABLED` and `MAX_OUTPUT_TOKENS`.
+- Before with `cost_spike`: total cost `$0.0329`, output tokens `2164`.
+- After with optimization enabled: total cost `$0.0139`, output tokens `900`.
+- Cost reduction: approximately `57.8%`; quality proxy remained `0.8`.
+- Evidence: `submission/evidence/bonus-cost-before-after.md`.
+
+- Audit log: added `app/audit.py`; incident enable/disable events are written to `data/audit.jsonl` without PII.
+- Evidence: `submission/evidence/bonus-audit-log-sample.jsonl`.
+
+- Custom automation: added `scripts/detect_anomalies.py` to detect P95 latency, error-rate and PII anomalies from `data/logs.jsonl`.
+- Result: P95 `2650ms`, error rate `0%`, PII leaks `0`.
+- Evidence: `submission/evidence/bonus-anomaly-output.json`.

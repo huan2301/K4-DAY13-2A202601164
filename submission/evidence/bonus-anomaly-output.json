@@ -1,0 +1,12 @@
+{
+  "records": 319,
+  "responses": 95,
+  "p95_latency_ms": 2650.0,
+  "error_rate_pct": 0.0,
+  "pii_leaks": [],
+  "anomalies": {
+    "high_tail_latency": false,
+    "high_error_rate": false,
+    "pii_detected": false
+  }
+}
